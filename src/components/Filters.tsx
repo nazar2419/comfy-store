@@ -1,12 +1,11 @@
 import { Form, useLoaderData, Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { ProductsResponseWithParams } from "@/utils";
-import { FormInput, FormSelect } from "@/components";
+import { FormInput, FormSelect, FormRange, FormCheckbox } from "@/components";
 
 function Filters() {
   const {meta, params} = useLoaderData() as ProductsResponseWithParams
   const {search, company, category, shipping, order, price} = params;
-  
   return (
     <Form
       className="border rounded-md px-8 py-4 grid gap-x-4
@@ -22,7 +21,7 @@ function Filters() {
       <FormSelect 
         label="select category"
         name="category"
-        options={meta.caregories}
+        options={meta.categories}
         defaultValue={category}
       />
       { /* COMPANIES */}
@@ -39,6 +38,8 @@ function Filters() {
         options={["a-z", "z-a", "high", "low"]}
         defaultValue={order}
       />
+      <FormRange label="price" name="price" defaultValue={price} />
+      <FormCheckbox label="free shipping" name="shipping" defaultValue={shipping} />
       <Button type="submit" size="sm" className="self-end mb-2">
         Search
       </Button> 

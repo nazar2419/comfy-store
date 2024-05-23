@@ -22,7 +22,7 @@ export type Product = {
 };
 
 export type ProductsMeta = {
-  caregories: string[];
+  categories: string[];
   companies: string[];
   pagination: Pagination;
 };
@@ -40,6 +40,7 @@ export type Params = {
   company?: string;
   order?: string;
   price?: string;
+  shipping?: string;
   page?: number;
 };
 
