@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
 import { type LoaderFunction } from "react-router-dom";
+import { SelectedProductColor } from "@/components";
 
 export const loader: LoaderFunction = async ({
   params,
@@ -31,7 +32,7 @@ const SingleProduct = () => {
   const addToCart = () => {
     console.log("add to cart");
   };
-  console.log(product.id);
+
 
   return (
     <section>
@@ -64,6 +65,11 @@ const SingleProduct = () => {
           </p>
           <p className="mt-6 leading-8">{description}</p>
           {/* COLORS */}
+          <SelectedProductColor 
+            colors={colors}
+            productColor={productColor}
+            setProductColor={setProductColor}
+          />
           {/* AMOUNT */}
           {/* CART BUTTON */}
           <Button size="lg" className="mt-10" onClick={addToCart}>
