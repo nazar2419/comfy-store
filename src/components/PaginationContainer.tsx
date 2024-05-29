@@ -25,7 +25,7 @@ function PaginationContainer() {
     const url = constructUrl({ pageNumber, search, pathname });
 
   return (
-    <PaginationItem>
+    <PaginationItem  key={pageNumber}>
       <PaginationLink to={url} isActive={isActive}>
         {pageNumber}
       </PaginationLink>
