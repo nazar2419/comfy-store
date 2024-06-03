@@ -21,9 +21,7 @@ const cartSlice = createSlice({
   reducers: {
     addItem: (state, action: PayloadAction<CartItem>) => {
       const newCartItem = action.payload;
-      const item = state.cartItems.find((i) => {
-        i.cardID === newCartItem.cardID;
-      });
+      const item = state.cartItems.find((i) => i.cartID === newCartItem.cartID);
       if (item) {
         item.amount += newCartItem.amount;
       } else {
@@ -43,9 +41,9 @@ const cartSlice = createSlice({
     },
     removeItem: (state, action: PayloadAction<string>) => {
       const cartID = action.payload;
-      const cartItem = state.cartItems.find((id) => id.cardID === cartID);
+      const cartItem = state.cartItems.find((id) => id.cartID === cartID);
       if (!cartItem) return;
-      state.cartItems = state.cartItems.filter((i) => i.cardID !== cartID);
+      state.cartItems = state.cartItems.filter((i) => i.cartID !== cartID);
       state.numItemsInCart -= cartItem.amount;
       state.cartTotal -= Number(cartItem.price) * cartItem.amount;
       cartSlice.caseReducers.calculateTotals(state);
@@ -53,10 +51,10 @@ const cartSlice = createSlice({
     },
     editItem: (
       state,
-      action: PayloadAction<{ cardID: string; amount: number }>
+      action: PayloadAction<{ cartID: string; amount: number }>
     ) => {
-      const { cardID, amount } = action.payload;
-      const cartItem = state.cartItems.find((i) => i.cardID === cardID);
+      const { cartID, amount } = action.payload;
+      const cartItem = state.cartItems.find((i) => i.cartID === cartID);
       if (!cartItem) return;
 
       state.numItemsInCart += amount - cartItem.amount;

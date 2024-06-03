@@ -52,7 +52,7 @@ export type SingleProductResponse = {
 };
 
 export type CartItem = {
-  cardID: string;
+  cartID: string;
   productID: number;
   image: string;
   title: string;
