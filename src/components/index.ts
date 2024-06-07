@@ -23,3 +23,4 @@ export { default as SelectedProductAmount } from "./SelectedProductAmount";
 export { default as SelectedProductColor } from "./SelectedProductColor";
 export { default as CartTotals } from "./CartTotals";
 export { default as CartItemsList } from "./CartItemsList";
+export { default as SubmitBtn } from "./SubmitBtn";
