@@ -1,15 +1,22 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
-import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+
+import { logoutUser } from "@/features/user/userSlice";
+import { clearCart } from "@/features/cart/cartSlice";
+import { useToast } from "./ui/use-toast";
 
 function Header() {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  // temp
-  const [user, setUser] = useState<{ username: string } | null>({
-    username: "demo user",
-  });
+  const { toast } = useToast();
+  const user = useAppSelector((state) => state.userState.user);
+  
+
   const handleLogout = () => {
-    setUser(null);
+    dispatch(clearCart());
+    dispatch(logoutUser());
+    toast({ description: "Logged out"});
     navigate('/')
   };
   return (
@@ -23,7 +30,7 @@ function Header() {
               Logout
             </Button>
           </div>
-        ) : (
+        ) : ( 
           <div className="flex gap-x-6 justify-center items-center -mr-4">
             <Button asChild variant="link" size="sm">
               <Link to="/login">Sign in / Guest</Link>
